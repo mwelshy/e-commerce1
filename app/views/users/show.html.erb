@@ -1,0 +1,34 @@
+<h1>Users#show</h1>
+<p>Find me in app/views/users/show.html.erb</p>
+
+<%= current_user.fname %>
+
+<% if current_user %>
+
+
+	<p>You are Currently Logged in!</p>
+
+	<% current_user.cart.products.each do |product|%>
+
+
+		<%= product.product_name %>
+		<br>
+		<%= product.price %>
+		<br>
+		<img src= <%= Faker::LoremPixel.image  %>>
+		<br>
+		<% end %>
+
+
+
+	<h2> WishList</h2>
+
+		<% current_user.wishlist.products.each do |product| %>
+		<%= product.product_name %>
+		<br>
+		<%= product.price %>
+		<br>
+
+	<% end %>
+
+<% end %>

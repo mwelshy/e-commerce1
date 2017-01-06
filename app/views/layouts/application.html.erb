@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ECommerce1</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+  <h1>E Commerce Application</h1>
+  <ul>
+  	<li><a href="/">Home</a></li>
+  	<li><a href="/create">Create A User</a></li>
+  	<li><a href="/login">Log In</a></li>
+    
+  </ul>
+    <%= yield %>
+
+      <% if current_user %>
+    <!-- log out -->
+
+         <%=form_tag '/sessions/destroy' do %>
+
+	           <%= submit_tag('Log out')  %>
+
+         <% end %>
+
+      <% end %>
+
+
+
+  <% if current_user  %>
+
+    <a href="/users/<%= "#{session[:user_id]}" %>">Your Page</a>
+
+  <% end %>
+  </body>
+</html>
