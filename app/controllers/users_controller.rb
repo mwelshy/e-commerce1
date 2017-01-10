@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  
+  # this goes in the model ^^
   
 
   def index
@@ -6,12 +9,30 @@ class UsersController < ApplicationController
   end
 
   def new
+    @user = User.new
 
   end
 
   def create
-    @user = User.create(user_params)
-    redirect_to @user
+
+    # @user = User.new(user_params)
+    # if @user.save
+    #   session[:user_id] = @user.id
+    #   redirect_to @user
+    # else
+    #   flash[:notice] = "Error!, You need an email!"
+    #   redirect_to new_user_path
+    #  end
+    @user = User.new(user_params)
+      if @user.save
+        session[:user_id] = @user.id
+        Wishlist.create(user_id: @user.id)
+        Cart.create(user_id: @user.id)
+        redirect_to @user
+      else 
+        flash[:notice] = "Error creating user!"
+        render new_user_path
+      end
   end
 
   def update
@@ -33,7 +54,11 @@ class UsersController < ApplicationController
 
   def user_params
     
-    params.require(:user).permit(:fname, :lname, :username, :email, :password)
+    params.require(:user).permit(:fname, :lname, :username, :email, :password, :password_confirmation)
 
+  end
+
+  def create_users_cart
+    Cart.create(user_id: @user.id)
   end
 end

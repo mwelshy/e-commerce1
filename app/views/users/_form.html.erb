@@ -1,0 +1,35 @@
+<%= form_for User.new do |f| %>
+
+<% if @user.errors.any? %>
+     <% @user.errors.full_messages.each do |message| %>
+       <li><%= message %></li>
+     <% end %>
+   <% end %>
+
+   
+	<%= f.label :fname, value: "First Name" %>
+	<%= f.text_field :fname, placeholder: "First Name" %>
+	<br>
+
+	<%= f.label :lname, value: "Last Name" %>
+	<%= f.text_field :lname, placeholder: "Last Name" %>
+	<br>
+
+	<%= f.label :username %>
+	<%= f.text_field :username, placeholder: "Username" %>
+	<br>
+
+
+	<%= f.label :email %>
+	<%= f.text_field :email, placeholder: "Email" %>
+	<br>
+
+	<%= f.label :password %>
+	<%= f.password_field :password, placeholder: "Password" %><br>
+	<%= f.password_field :password_confiramtion, placeholder: "Confirm your password" %>
+	<br>
+
+
+	<%= f.submit %>
+
+<% end %>

@@ -2,6 +2,22 @@
 <p>Find me in app/views/products/index.html.erb</p>
 
 
-<% @products.each do |product| %>
-	<%= product.product_name %>
+<% if current_user %>
+
+
+
+	<% @products.each do |product| %>
+		<%= product.product_name %>
+			<%= form_tag '/products/add_to_cart' do %>
+				<%= hidden_field_tag :product_id, product.id %>
+				<%= submit_tag ("Add To Cart") %>
+			<% end %>
+
+			<%=form_tag '/products/add_to_wishlist' do %>
+				<%= hidden_field_tag :product_id, product.id %>
+				<%= submit_tag ("Add To Wishlist") %>
+
+			<% end %>
+
+	<% end %>
 <% end %>

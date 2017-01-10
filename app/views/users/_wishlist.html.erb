@@ -1,0 +1,30 @@
+<% current_user.wishlist.products.each do |product| %>
+        <%= product.product_name %>
+        <br>
+        <%= product.price %>
+        <br>
+        <img src= <%= Faker::LoremPixel.image  %>>
+        <br>
+
+
+        <%= form_tag '/products/remove_from_wishlist' do %>
+            <%= hidden_field_tag :product_id, product.id %>
+
+                <%= submit_tag ("Remove From Wishlist") %>
+        <% end %>
+
+        <%= form_tag '/products/add_to_cart_from_wishlist' do %>
+        	<%= hidden_field_tag :product_id, product.id %>
+        		<%= submit_tag ("Add To Cart") %>
+        <% end %>
+<% end %>
+
+
+<% current_user.wishlist.products.each do |newprod| %>
+
+
+
+
+<% end %>
+
+        

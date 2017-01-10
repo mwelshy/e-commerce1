@@ -2,33 +2,24 @@
 <p>Find me in app/views/users/show.html.erb</p>
 
 <%= current_user.fname %>
+<br>
 
 <% if current_user %>
 
-
-	<p>You are Currently Logged in!</p>
-
-	<% current_user.cart.products.each do |product|%>
+<a href="/products">View All Products</a>
+<br>
 
 
-		<%= product.product_name %>
-		<br>
-		<%= product.price %>
-		<br>
-		<img src= <%= Faker::LoremPixel.image  %>>
-		<br>
-		<% end %>
+   <%= render 'cart' %>
+   <br>
 
 
+    <h2> WishList</h2>
 
-	<h2> WishList</h2>
+        <%= render 'wishlist' %>
 
-		<% current_user.wishlist.products.each do |product| %>
-		<%= product.product_name %>
-		<br>
-		<%= product.price %>
-		<br>
-
-	<% end %>
+      
+    
 
 <% end %>
+

@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
 
 
-  resources :users, :sessions, :products, :carts, :wishlists
+  resources :sessions, :products, :carts, :wishlists
+
+  devise_for :users
 
   # create a user
 
@@ -12,6 +14,14 @@ Rails.application.routes.draw do
   get '/login' => 'static_pages#login'
 
   post '/sessions/destroy' 
+
+  post '/products/add_to_cart'
+  post '/products/add_to_wishlist'
+
+
+  post '/products/remove_from_cart'
+  post '/products/remove_from_wishlist'
+  post '/products/add_to_cart_from_wishlist'
 
 
 

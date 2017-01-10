@@ -8,7 +8,7 @@
 
 
 
-2.times do 
+25.times do 
 	product_name = Faker::Commerce.product_name
 	price = Faker::Commerce.price
 	department = Faker::Commerce.department

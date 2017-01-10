@@ -1,0 +1,16 @@
+<% current_user.cart.products.each do |product| %>
+
+
+        <%= product.product_name %>
+        <br>
+        <%= product.price %>
+        <br>
+        <img src= <%= Faker::LoremPixel.image  %>>
+        <br>
+
+            <%= form_tag '/products/remove_from_cart' do %>
+                <%= hidden_field_tag :product_id, product.id %>
+
+                    <%= submit_tag ("Remove From Cart") %>
+            <% end %>
+        <% end %>

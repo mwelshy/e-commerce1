@@ -9,12 +9,24 @@
   </head>
 
   <body>
+  <% flash.each do |name, msg| -%>
+     <%= content_tag :div, msg, class: name %>
+   <% end -%>
 
   <h1>E Commerce Application</h1>
+    <%= form_tag(products_path, :method => "get", id: "search-form") do %>
+      <%= text_field_tag :search, params[:search] %>
+       <%= submit_tag "Search", :name => nil %>
+  <% end %>
   <ul>
   	<li><a href="/">Home</a></li>
   	<li><a href="/create">Create A User</a></li>
   	<li><a href="/login">Log In</a></li>
+<% if current_user  %>
+
+    <li><a href="/users/<%= "#{session[:user_id]}" %>">Your Page</a></li>
+
+  <% end %>
     
   </ul>
     <%= yield %>
@@ -30,12 +42,5 @@
 
       <% end %>
 
-
-
-  <% if current_user  %>
-
-    <a href="/users/<%= "#{session[:user_id]}" %>">Your Page</a>
-
-  <% end %>
   </body>
 </html>
