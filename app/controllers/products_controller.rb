@@ -71,6 +71,21 @@ class ProductsController < ApplicationController
 
   end
 
+  def checkout 
+    @user = current_user
+    @product = Product.all
+    @user.cart.products.delete(@product)
+    redirect_to @user
+
+  end
+
+  def clear_wishlist
+    @user = current_user
+    @product = Product.all
+    @user.wishlist.products.delete(@product)
+    redirect_to @user
+  end
+
 
   def search term
 

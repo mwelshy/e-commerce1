@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   post '/products/remove_from_cart'
   post '/products/remove_from_wishlist'
   post '/products/add_to_cart_from_wishlist'
+  post '/products/checkout'
+  post '/products/clear_wishlist'
 
 
 
