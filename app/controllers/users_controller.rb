@@ -47,7 +47,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.cart = @user.cart || Cart.create
     @user.wishlist = @user.wishlist || Wishlist.create
-    # @current_user = User.find(session[:user_id])
+    
   end
 
   def edit
