@@ -29,7 +29,7 @@ class ProductsController < ApplicationController
   end
 
   def add_to_cart
-    @user = User.find(session[:user_id])
+    @user = current_user
     @product = Product.find(params[:product_id])
     @user.cart.products.push(@product)
     redirect_to @user
@@ -38,7 +38,7 @@ class ProductsController < ApplicationController
 
 
   def add_to_wishlist
-    @user = User.find(session[:user_id])
+    @user = current_user
     @product = Product.find(params[:product_id])
     @user.wishlist.products.push(@product)
     redirect_to @user
@@ -47,7 +47,7 @@ class ProductsController < ApplicationController
 
 
   def remove_from_cart
-    @user = User.find(session[:user_id])
+    @user = current_user
     @product = Product.find(params[:product_id])
     @user.cart.products.delete(@product)
     redirect_to @user
@@ -55,7 +55,7 @@ class ProductsController < ApplicationController
 
 
   def remove_from_wishlist
-    @user = User.find(session[:user_id])
+    @user = current_user
     @product = Product.find(params[:product_id])
     @user.wishlist.products.delete(@product)
     redirect_to @user
@@ -63,7 +63,7 @@ class ProductsController < ApplicationController
   end
 
   def add_to_cart_from_wishlist
-    @user = User.find(session[:user_id])
+    @user = current_user
     @product = Product.find(params[:product_id])
     @user.cart.products.push(@product)
     @user.wishlist.products.delete(@product)

@@ -20,11 +20,12 @@
   <% end %>
   <ul>
   	<li><a href="/">Home</a></li>
-  	<li><a href="/create">Create A User</a></li>
-  	<li><a href="/login">Log In</a></li>
+  	<li><%= link_to 'Create A User', new_user_registration_path %></li>
+  	<li><%= link_to 'Log In', new_user_session_path %></li>
+    <li><%= link_to 'Log Out', destroy_user_session_path, :method => :delete %></li>
 <% if current_user  %>
 
-    <li><a href="/users/<%= "#{session[:user_id]}" %>">Your Page</a></li>
+    <li><<%= link_to 'Your Page', user_path(current_user) %></li>
 
   <% end %>
     

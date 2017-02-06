@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  skip_before_filter :verify_authenticity_token
+
   
   # this goes in the model ^^
   
@@ -43,6 +45,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @user.cart = @user.cart || Cart.create
+    @user.wishlist = @user.wishlist || Wishlist.create
     # @current_user = User.find(session[:user_id])
   end
 
